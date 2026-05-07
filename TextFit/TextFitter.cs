@@ -1,6 +1,9 @@
-namespace TextFit;
-
+using System;
+using System.Collections.Generic;
 using System.Text;
+using System.Linq;
+
+namespace TextFit;
 
 /// <summary>
 /// Fits a piece of (possibly multi-line) text into a fixed bounding box by word-wrapping it

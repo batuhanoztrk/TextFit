@@ -1,6 +1,8 @@
-namespace TextFit.Skia;
-
+using System;
+using System.IO;
 using SkiaSharp;
+
+namespace TextFit.Skia;
 
 /// <summary>
 /// An <see cref="ITextMeasurer"/> implementation backed by SkiaSharp.
@@ -66,7 +68,6 @@ public sealed class SkiaTextMeasurer : ITextMeasurer, IDisposable
 
         _font.Size = fontSize;
         return _font.MeasureText(text);
-
     }
 
     /// <inheritdoc />
