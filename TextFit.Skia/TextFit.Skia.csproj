@@ -13,16 +13,31 @@
         <PackageId>TextFit.Skia</PackageId>
         <Version>0.1.0</Version>
         <Authors>batuhanoztrk</Authors>
+        
         <Description>SkiaSharp-based ITextMeasurer for the TextFit library.</Description>
         <PackageTags>text;layout;wrap;autofit;skiasharp</PackageTags>
+        
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        
         <RepositoryUrl>https://github.com/batuhanoztrk/TextFit</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
         <PackageProjectUrl>https://github.com/batuhanoztrk/TextFit</PackageProjectUrl>
+
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <DebugType>portable</DebugType>
+        <DebugSymbols>true</DebugSymbols>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="SkiaSharp" Version="3.119.2"/>
         <ProjectReference Include="..\TextFit\TextFit.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.203" PrivateAssets="All" />
     </ItemGroup>
 
 </Project>

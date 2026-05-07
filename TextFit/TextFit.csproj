@@ -10,16 +10,32 @@
         <PackageId>TextFit</PackageId>
         <Version>0.1.0</Version>
         <Authors>batuhanoztrk</Authors>
+        
         <Description>Renderer-agnostic .NET library that fits wrapped text into a fixed-size box at the largest font size that still fits.</Description>
         <PackageTags>text;layout;wrap;autofit;pdf;measure</PackageTags>
+        
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        
         <RepositoryUrl>https://github.com/batuhanoztrk/TextFit</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
         <PackageProjectUrl>https://github.com/batuhanoztrk/TextFit</PackageProjectUrl>
+        
         <PackageReadmeFile>README.md</PackageReadmeFile>
+
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <DebugType>portable</DebugType>
+        <DebugSymbols>true</DebugSymbols>
     </PropertyGroup>
 
     <ItemGroup>
         <None Include="..\README.md" Pack="true" PackagePath="\" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.203" PrivateAssets="All" />
     </ItemGroup>
 
 </Project>
