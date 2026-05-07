@@ -7,25 +7,26 @@ using SkiaSharp;
 /// </summary>
 /// <remarks>
 /// <para>
-/// Caches the underlying <see cref="SKTypeface"/> and a reusable <see cref="SKPaint"/> for the
+/// Caches the underlying <see cref="SKTypeface"/> and a reusable <see cref="SKFont"/> for the
 /// lifetime of the instance, so a single fitter run only constructs them once instead of per
 /// measurement.
 /// </para>
 /// <para>
 /// <b>Ownership.</b> When you construct from a file path, this measurer owns the typeface and
-/// will dispose of it. When you pass a pre-built <see cref="SKTypeface"/>, ownership is opt in via
+/// will dispose of it. When you pass a pre-built <see cref="SKTypeface"/>, ownership is opted in via
 /// the <c>ownsTypeface</c> constructor parameter.
 /// </para>
 /// <para>
 /// <b>Thread safety.</b> Instances are NOT thread-safe — they mutate a shared
-/// <see cref="SKPaint"/> on every measurement. Use one per thread or guard externally.
+/// <see cref="SKFont"/> on every measurement (the <c>Size</c> property is updated per call).
+/// Use one per thread or guard externally.
 /// </para>
 /// </remarks>
 public sealed class SkiaTextMeasurer : ITextMeasurer, IDisposable
 {
     private readonly SKTypeface _typeface;
     private readonly bool _ownsTypeface;
-    private readonly SKPaint _paint;
+    private readonly SKFont _font;
     private bool _disposed;
 
     /// <summary>Loads a typeface from a TTF/OTF file path.</summary>
@@ -35,13 +36,12 @@ public sealed class SkiaTextMeasurer : ITextMeasurer, IDisposable
     /// <exception cref="InvalidOperationException">When SkiaSharp cannot parse the font.</exception>
     public SkiaTextMeasurer(string fontPath)
     {
-        if (fontPath == null) throw new ArgumentNullException(nameof(fontPath));
         if (!File.Exists(fontPath)) throw new FileNotFoundException("Font file not found.", fontPath);
 
         _typeface = SKTypeface.FromFile(fontPath)
                     ?? throw new InvalidOperationException($"SkiaSharp could not load typeface from '{fontPath}'.");
         _ownsTypeface = true;
-        _paint = CreatePaint(_typeface);
+        _font = new SKFont(_typeface);
     }
 
     /// <summary>Wraps an existing <see cref="SKTypeface"/>.</summary>
@@ -55,31 +55,25 @@ public sealed class SkiaTextMeasurer : ITextMeasurer, IDisposable
     {
         _typeface = typeface ?? throw new ArgumentNullException(nameof(typeface));
         _ownsTypeface = ownsTypeface;
-        _paint = CreatePaint(_typeface);
+        _font = new SKFont(_typeface);
     }
-
-    private static SKPaint CreatePaint(SKTypeface typeface) => new SKPaint
-    {
-        Typeface = typeface,
-        IsAntialias = true,
-    };
 
     /// <inheritdoc />
     public float MeasureWidth(string text, float fontSize)
     {
         if (_disposed) throw new ObjectDisposedException(nameof(SkiaTextMeasurer));
-        if (text == null) throw new ArgumentNullException(nameof(text));
         if (text.Length == 0) return 0f;
 
-        _paint.TextSize = fontSize;
-        return _paint.MeasureText(text);
+        _font.Size = fontSize;
+        return _font.MeasureText(text);
+
     }
 
     /// <inheritdoc />
     public void Dispose()
     {
         if (_disposed) return;
-        _paint.Dispose();
+        _font.Dispose();
         if (_ownsTypeface) _typeface.Dispose();
         _disposed = true;
     }
