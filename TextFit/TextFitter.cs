@@ -13,7 +13,7 @@ using System.Text;
 /// describing how the text should be drawn.
 /// </para>
 /// <para>
-/// Instances are cheap to allocate and safe to reuse. Thread safety follows that of the
+/// Instances are inexpensive to allocate and safe to reuse. Thread safety follows that of the
 /// underlying <see cref="ITextMeasurer"/>.
 /// </para>
 /// </remarks>
@@ -96,9 +96,9 @@ public sealed class TextFitter
 
         (float FontSize, float Leading, IReadOnlyList<string> Lines)? best = null;
 
-        for (int i = 0; i < options.BinarySearchIterations; i++)
+        for (var i = 0; i < options.BinarySearchIterations; i++)
         {
-            float mid = (lo + hi) / 2f;
+            var mid = (lo + hi) / 2f;
 
             var candidate = TryFit(text, maxWidth, maxHeight, mid, options.LineSpacingFactor);
 
@@ -136,12 +136,9 @@ public sealed class TextFitter
 
         // Greedy wrapping can leave a single overlong word on its own line. Reject this
         // candidate, so the binary search picks a smaller size instead of mid-word breaks.
-        foreach (var t in lines)
+        if (lines.Any(t => _measurer.MeasureWidth(t, fontSize) > maxWidth + 0.01f))
         {
-            if (_measurer.MeasureWidth(t, fontSize) > maxWidth + 0.01f)
-            {
-                return null;
-            }
+            return null;
         }
 
         return (fontSize, leading, lines);

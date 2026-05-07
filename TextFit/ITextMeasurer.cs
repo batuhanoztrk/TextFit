@@ -11,7 +11,7 @@ namespace TextFit;
 /// <para>
 /// <see cref="TextFitter"/> calls <see cref="MeasureWidth"/> many times during a single fit
 /// (binary-search across font sizes &#215; word-wrapping iterations), so implementations
-/// should be cheap — typically by caching font/typeface objects rather than constructing them
+/// should be inexpensive — typically by caching font/typeface objects rather than constructing them
 /// per call.
 /// </para>
 /// </remarks>

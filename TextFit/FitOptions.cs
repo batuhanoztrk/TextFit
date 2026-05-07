@@ -17,8 +17,8 @@ public sealed class FitOptions
     /// Default: <c>0.55</c>.
     /// </summary>
     /// <remarks>
-    /// This prevents absurd font sizes in tall, narrow boxes (e.g. a 4&#215;200 box would
-    /// otherwise pick a 60pt font that obviously can't render anything legible).
+    /// This prevents absurd font sizes in tall, narrow boxes (e.g., a 4&#215;200 box would
+    /// otherwise pick a 60pt font that can't render anything legible).
     /// </remarks>
     public float? MaxFontSizeBoxHeightFactor { get; set; } = 0.55f;
 
