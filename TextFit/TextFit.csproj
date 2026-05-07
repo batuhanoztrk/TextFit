@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.1;net9.0</TargetFrameworks>
+        <LangVersion>latest</LangVersion>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+        <PackageId>TextFit</PackageId>
+        <Version>0.1.0</Version>
+        <Authors>batuhanoztrk</Authors>
+        <Description>Renderer-agnostic .NET library that fits wrapped text into a fixed-size box at the largest font size that still fits.</Description>
+        <PackageTags>text;layout;wrap;autofit;pdf;measure</PackageTags>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <RepositoryUrl>https://github.com/batuhanoztrk/TextFit</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/batuhanoztrk/TextFit</PackageProjectUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="..\README.md" Pack="true" PackagePath="\" />
+    </ItemGroup>
+
+</Project>
