@@ -1,5 +1,8 @@
 # TextFit
 
+[![NuGet](https://img.shields.io/nuget/v/Textfit.svg)](https://www.nuget.org/packages/Textfit)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/Textfit.svg)](https://www.nuget.org/packages/Textfit)
+
 A small, renderer-agnostic .NET library for fitting wrapped text into a fixed-size bounding box at the **largest font size that still fits**.
 
 It does three things:
@@ -24,8 +27,6 @@ Drawing wrapped, auto-fitting text into a fixed box (PDF signature widgets, imag
 dotnet add package TextFit          # core
 dotnet add package TextFit.Skia     # optional, ITextMeasurer using SkiaSharp
 ```
-
-> Both packages target `netstandard2.0` and `net8.0`.
 
 ---
 
