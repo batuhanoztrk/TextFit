@@ -8,7 +8,6 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
 
         <PackageId>TextFit</PackageId>
-        <Version>0.1.0</Version>
         <Authors>batuhanoztrk</Authors>
         
         <Description>Renderer-agnostic .NET library that fits wrapped text into a fixed-size box at the largest font size that still fits.</Description>
